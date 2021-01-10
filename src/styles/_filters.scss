@@ -1,0 +1,46 @@
+.filters-wrapper {
+  margin: 10px 0;
+  width: 100%;
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #777;
+    text-transform: uppercase;
+  }
+  .filters {
+    border: 2px solid #d0d0d0;
+    padding: 10px;
+  }
+  .addfilter-button {
+    color: #888;
+    font-family: Inter;
+    display: contents;
+    cursor: pointer;
+    padding: 5px;
+  }
+}
+
+.filter-form {
+  .MuiOutlinedInput-input {
+    padding: 10px 14px;
+  }
+  display: flex;
+  margin: 5px 0;
+  .form-field-first {
+    margin: 0 20px;
+    width: 220px;
+  }
+  .form-field {
+    margin: 0 18px;
+  }
+  .delete-button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    .delete-icon {
+      font-size: 20px;
+    }
+  }
+}

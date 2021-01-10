@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@material-ui/core';
 
-import { TableData } from '../../utils/data';
+import { FiCheck, FiX } from 'react-icons/fi';
 
 const DisplayTable = (props) => {
+  const { data } = props;
+
+  // eslint-disable-next-line
+  const [tableData, setTableData] = useState(data);
+
   return (
     <TableContainer component={Paper} className='my-table'>
       <Table>
@@ -25,7 +32,7 @@ const DisplayTable = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {TableData.map((row) => (
+          {tableData.map((row) => (
             <TableRow key={row.name}>
               <TableCell component='th' scope='row'>
                 {row.name}
@@ -34,7 +41,13 @@ const DisplayTable = (props) => {
               <TableCell>{row.followers_count}</TableCell>
               <TableCell>{row.following_count}</TableCell>
               <TableCell>{row.location}</TableCell>
-              <TableCell>{row.verified ? 'true' : 'false'}</TableCell>
+              <TableCell align='center'>
+                {row.verified ? (
+                  <FiCheck color='#51b651' size={16} />
+                ) : (
+                  <FiX color='#d96565' size={16} />
+                )}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
