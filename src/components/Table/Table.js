@@ -26,7 +26,7 @@ const DisplayTable = (props) => {
       case 'LTE':
         return data.filter((d) => d[formData.id] <= formData.value);
       case 'CONTAINS':
-        return data.filter((d) => d[formData.id].includes(formData.value));
+        return data.filter((d) => `${d[formData.id]}`.includes(formData.value));
       default:
         return [];
     }

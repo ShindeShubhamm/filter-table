@@ -25,8 +25,11 @@ const App = () => {
   };
 
   const handleFilterDelete = (index) => {
-    const newConditions = [...filters.conditions];
-    setFilters({ conditions: newConditions.filter((c, i) => i !== index) });
+    const newConditions = [...filters.conditions].filter((c, i) => i !== index);
+    if (index === 0 && newConditions.length !== 0) {
+      newConditions[0].filter = 'AND';
+    }
+    setFilters({ conditions: newConditions });
   };
 
   return (
