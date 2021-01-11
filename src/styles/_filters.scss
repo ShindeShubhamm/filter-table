@@ -26,13 +26,14 @@
     padding: 10px 14px;
   }
   display: flex;
+  align-items: center;
   margin: 5px 0;
   .form-field-first {
-    margin: 0 20px;
-    width: 220px;
+    margin: 0 10px;
+    width: 332px;
   }
   .form-field {
-    margin: 0 18px;
+    margin: 0 6px;
   }
   .delete-button {
     background-color: transparent;

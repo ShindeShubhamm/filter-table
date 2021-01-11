@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   Table,
@@ -13,10 +13,57 @@ import {
 import { FiCheck, FiX } from 'react-icons/fi';
 
 const DisplayTable = (props) => {
-  const { data } = props;
-
-  // eslint-disable-next-line
+  const { data, filters } = props;
   const [tableData, setTableData] = useState(data);
+
+  const getFilteredData = (formData, data) => {
+    switch (formData.operator) {
+      case 'EQ':
+        // eslint-disable-next-line
+        return data.filter((d) => d[formData.id] == formData.value);
+      case 'GTE':
+        return data.filter((d) => d[formData.id] >= formData.value);
+      case 'LTE':
+        return data.filter((d) => d[formData.id] <= formData.value);
+      case 'CONTAINS':
+        return data.filter((d) => d[formData.id].includes(formData.value));
+      default:
+        return [];
+    }
+  };
+
+  const applyFilters = (validFilters) => {
+    const andFilters = validFilters.filter((f) => f.filter === 'AND');
+    const orFilters = validFilters.filter((f) => f.filter === 'OR');
+    let filteredANDData = data;
+    let filteredORData = [];
+    for (const af of andFilters) {
+      filteredANDData = getFilteredData(af, filteredANDData);
+    }
+    for (const orF of orFilters) {
+      filteredORData.push(...getFilteredData(orF, data));
+    }
+    const finalData = new Array(
+      ...new Set([...filteredANDData, ...filteredORData])
+    );
+    setTableData(finalData);
+  };
+
+  useEffect(() => {
+    if (filters.conditions.length === 0) {
+      setTableData(data);
+      return;
+    }
+    const validFilters = filters.conditions.filter(
+      (f) => f.id && f.operator && (f.value || f.value === false) && f.filter
+    );
+    if (validFilters.length === 0) {
+      setTableData(data);
+      return;
+    }
+    applyFilters(validFilters);
+    // eslint-disable-next-line
+  }, [filters]);
 
   return (
     <TableContainer component={Paper} className='my-table'>

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import FilterForm from './FilterForm';
 
@@ -21,6 +21,17 @@ const Filters = (props) => {
   };
 
   const handleOnChange = (id, e) => {
+    let newData;
+    if (e.target.name === 'id') {
+      newData = {
+        ...filters.conditions[id],
+        [e.target.name]: e.target.value,
+        operator: '',
+        value: '',
+      };
+      handleFilterEdit(id, newData);
+      return;
+    }
     handleFilterEdit(id, {
       ...filters.conditions[id],
       [e.target.name]: e.target.value,

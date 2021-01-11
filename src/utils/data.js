@@ -48,31 +48,25 @@ export const listOfColumns = [
   {
     id: 'name',
     prettyName: 'Name',
-    valueType: 'text',
   },
   {
     id: 'screen_name',
     prettyName: 'Screen Name',
-    valueType: 'text',
   },
   {
     id: 'followers_count',
     prettyName: 'Followers Count',
-    valueType: 'text',
   },
   {
     id: 'following_count',
     prettyName: 'Following Count',
-    valueType: 'text',
   },
   {
     id: 'location',
     prettyName: 'Location',
-    valueType: 'text',
   },
   {
     id: 'verified',
     prettyName: 'Verified',
-    valueType: 'boolean',
   },
 ];

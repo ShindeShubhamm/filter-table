@@ -16,6 +16,7 @@ const FilterForm = (props) => {
           className='form-field-first'
           variant='outlined'
           value={values.filter}
+          displayEmpty
           onChange={(e) => onChange(id, e)}>
           <MenuItem value='AND'>AND</MenuItem>
           <MenuItem value='OR'>OR</MenuItem>
@@ -48,6 +49,28 @@ const FilterForm = (props) => {
         <MenuItem value='LTE'>{'<='}</MenuItem>
         <MenuItem value='EQ'>Equals</MenuItem>
       </Select>
+      {values.id === 'verified' ? (
+        <Select
+          name='value'
+          className='form-field'
+          variant='outlined'
+          displayEmpty
+          value={values.value}
+          onChange={(e) => onChange(id, e)}
+          fullWidth>
+          <MenuItem value={true}>Yes</MenuItem>
+          <MenuItem value={false}>No</MenuItem>
+        </Select>
+      ) : (
+        <TextField
+          name='value'
+          className='form-field'
+          variant='outlined'
+          value={values.value}
+          onChange={(e) => onChange(id, e)}
+          fullWidth
+        />
+      )}
       <button
         type='button'
         className='delete-button'
